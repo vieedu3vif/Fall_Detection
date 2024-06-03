@@ -18,7 +18,7 @@ uint8_t MPU6050_Init(uint8_t i2c) {
     uint8_t check;
     uint8_t Data;
 
-    // Check device ID WHO_AM_I
+   
     i2c_start(i2c);
     i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
     i2c_data(i2c, WHO_AM_I_REG);
@@ -27,8 +27,8 @@ uint8_t MPU6050_Init(uint8_t i2c) {
     check = i2c_data(i2c, 0xFF);
     i2c_stop(i2c);
 
-    if (check == 104) { // 0x68 will be returned by the sensor if everything goes well
-        // Power management register 0X6B we should write all 0's to wake the sensor up
+    if (check == 104) { 
+       
         Data = 0;
         i2c_start(i2c);
         i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
@@ -36,7 +36,7 @@ uint8_t MPU6050_Init(uint8_t i2c) {
         i2c_data(i2c, Data);
         i2c_stop(i2c);
 
-        // Set DATA RATE of 1KHz by writing SMPLRT_DIV register
+        
         Data = 0x07;
         i2c_start(i2c);
         i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
@@ -44,8 +44,7 @@ uint8_t MPU6050_Init(uint8_t i2c) {
         i2c_data(i2c, Data);
         i2c_stop(i2c);
 
-        // Set accelerometer configuration in ACCEL_CONFIG Register
-        // XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=0 -> ± 2g
+        
         Data = 0x00;
         i2c_start(i2c);
         i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
@@ -53,8 +52,7 @@ uint8_t MPU6050_Init(uint8_t i2c) {
         i2c_data(i2c, Data);
         i2c_stop(i2c);
 
-        // Set Gyroscopic configuration in GYRO_CONFIG Register
-        // XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> ± 250 °/s
+    
         Data = 0x00;
         i2c_start(i2c);
         i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
@@ -70,7 +68,7 @@ uint8_t MPU6050_Init(uint8_t i2c) {
 void MPU6050_Read_Accel(uint8_t i2c, MPU6050 *DataStruct) {
     uint8_t Rec_Data[6];
 
-    // Read 6 BYTES of data starting from ACCEL_XOUT_H register
+ 
     i2c_start(i2c);
     i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
     i2c_data(i2c, ACCEL_XOUT_H_REG);
@@ -95,7 +93,6 @@ void MPU6050_Read_Accel(uint8_t i2c, MPU6050 *DataStruct) {
 void MPU6050_Read_Gyro(uint8_t i2c, MPU6050 *DataStruct) {
     uint8_t Rec_Data[6];
 
-    // Read 6 BYTES of data starting from GYRO_XOUT_H register
     i2c_start(i2c);
     i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
     i2c_data(i2c, GYRO_XOUT_H_REG);
@@ -121,7 +118,7 @@ void MPU6050_Read_Temp(uint8_t i2c, MPU6050 *DataStruct) {
     uint8_t Rec_Data[2];
     int16_t temp;
 
-    // Read 2 BYTES of data starting from TEMP_OUT_H_REG register
+  
     i2c_start(i2c);
     i2c_add(i2c, MPU6050_ADDR, I2C_Direction_Transmitter);
     i2c_data(i2c, TEMP_OUT_H_REG);

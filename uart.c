@@ -13,10 +13,10 @@ void uart_init(unsigned int usart, unsigned short br)
 	gpio_init(PortA,9,OUT_AF_PP,OUT50);
 	gpio_init(PortA,10,IN_PUSHPULL,IN);
 	if(br == BR_9600){
-		USART1->BRR = 0b1110101000110; 
+		USART1->BRR = 0b111010100011; 
 		
 	}else if(br == BR_115200){
-		USART1->BRR = 0b000001001110001;
+		USART1->BRR = 0b100111000;
 
 		
 	

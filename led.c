@@ -9,9 +9,9 @@
 void led_init(unsigned int led)
 {
     if (led == 2) {
-        gpio_init(PortA, 2, OUT_GP_PP, OUT2); // Kh?i t?o chân GPIO C13 cho LED xanh
+        gpio_init(PortA, 2, OUT_GP_PP, OUT2); 
     } else {
-        gpio_init(PortB, 5, OUT_GP_PP, OUT2); // Kh?i t?o chân GPIO B5 cho LED d?
+        gpio_init(PortB, 5, OUT_GP_PP, OUT2);
     }
 }
 
@@ -30,7 +30,7 @@ void led_off(unsigned int led)
     if (led == 2) {
         GPIOA->BRR = LEDGREEN_PIN; 
     } else {
-        GPIOB->BRR = LEDRED_PIN; // Ð?t chân GPIOB5 xu?ng m?c th?p
+        GPIOB->BRR = LEDRED_PIN; 
     }
 }
 void led_blinked (unsigned int led) {

@@ -4,22 +4,21 @@
 #include "stm32f10x.h"
 #include "stm32f10x_rcc.h"
 #include "stm32f10x_gpio.h"
-#include "gpio.h"  // Ðua gpio.h lên trên systick.h vì nó du?c s? d?ng trong i2c.h
+#include "gpio.h"  
 
-// Ð?nh nghia h?ng s? speed mode
+
 #define I2C_FM 0x2D
 #define I2C_SM 0xB4
 
-// Ð?nh nghia h?ng s? ACK và NACK
+
 #define ACK 0
 #define NACK 1
 
 #define I2C_1 0
 #define I2C_2 1
-// Ð?nh nghia ki?u d? li?u và h?ng s? enum Status
+
 typedef enum {I2C_Error = 0, I2C_Success = !I2C_Error} I2C_Status;
 
-// Ð?nh nghia các hàm API cho thu vi?n I2C
 I2C_Status i2c_init(uint8_t i2c, unsigned short speed_mode);
 I2C_Status i2c_add(uint8_t i2c, char address, char RW);
 I2C_Status i2c_write(uint8_t i2c, char address, char data[]);

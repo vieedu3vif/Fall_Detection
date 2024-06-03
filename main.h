@@ -15,5 +15,5 @@ extern volatile int STATE;
 extern volatile int LEDR;
 extern volatile int FALL;
 
-
+void SystemClock_Config(void);
 int main(void);

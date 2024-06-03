@@ -27,8 +27,8 @@ Project File Date:  06/01/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
-timer.c(1): warning: In file included from...
-./timer.h(4): warning: In file included from...
+gpio.c(1): warning: In file included from...
+./gpio.h(3): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
       |                                                ^
@@ -38,8 +38,8 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-timer.c(1): warning: In file included from...
-./timer.h(4): warning: In file included from...
+gpio.c(1): warning: In file included from...
+./gpio.h(3): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
 ./RTE/Device/STM32F103C8\stm32f10x_conf.h(63): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_gpio.h(31): warning: In file included from...
@@ -52,8 +52,8 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-timer.c(1): warning: In file included from...
-./timer.h(4): warning: In file included from...
+gpio.c(1): warning: In file included from...
+./gpio.h(3): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
 ./RTE/Device/STM32F103C8\stm32f10x_conf.h(75): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_rcc.h(31): warning: In file included from...
@@ -66,8 +66,8 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-timer.c(1): warning: In file included from...
-./timer.h(4): warning: In file included from...
+gpio.c(1): warning: In file included from...
+./gpio.h(3): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
 ./RTE/Device/STM32F103C8\stm32f10x_conf.h(96): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\misc.h(31): warning: In file included from...
@@ -81,7 +81,7 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
 12 warnings generated.
-compiling timer.c...
+compiling gpio.c...
 button.c(1): warning: In file included from...
 ./button.h(4): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
@@ -196,20 +196,63 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-led.c(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   12 |         gpio_init(PortA, 2, OUT_GP_PP, OUT2); // Kh?i t?o ch<E2>n GPIO C13 cho LED xanh
-      |                                                             ^
-led.c(14): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   14 |         gpio_init(PortB, 5, OUT_GP_PP, OUT2); // Kh?i t?o ch<E2>n GPIO B5 cho LED d?
-      |                                                             ^
-led.c(33): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   33 |         GPIOB->BRR = LEDRED_PIN; // <D0>?t ch<E2>n GPIOB5 xu?ng m?c th?p
-      |                                     ^
-led.c(33): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   33 |         GPIOB->BRR = LEDRED_PIN; // <D0>?t ch<E2>n GPIOB5 xu?ng m?c th?p
-      |                                              ^
-16 warnings generated.
+12 warnings generated.
 compiling led.c...
+timer.c(1): warning: In file included from...
+./timer.h(4): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+      |                                                ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   19 |   *                code will be based on direct access to peripheral<92>s registers 
+      |                                                                     ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   26 |   *           - Macros to access peripheral<92>s registers hardware
+      |                                            ^
+timer.c(1): warning: In file included from...
+./timer.h(4): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
+./RTE/Device/STM32F103C8\stm32f10x_conf.h(63): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_gpio.h(31): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+      |                                                ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   19 |   *                code will be based on direct access to peripheral<92>s registers 
+      |                                                                     ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   26 |   *           - Macros to access peripheral<92>s registers hardware
+      |                                            ^
+timer.c(1): warning: In file included from...
+./timer.h(4): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
+./RTE/Device/STM32F103C8\stm32f10x_conf.h(75): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_rcc.h(31): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+      |                                                ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   19 |   *                code will be based on direct access to peripheral<92>s registers 
+      |                                                                     ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   26 |   *           - Macros to access peripheral<92>s registers hardware
+      |                                            ^
+timer.c(1): warning: In file included from...
+./timer.h(4): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
+./RTE/Device/STM32F103C8\stm32f10x_conf.h(96): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\misc.h(31): warning: In file included from...
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+      |                                                ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   19 |   *                code will be based on direct access to peripheral<92>s registers 
+      |                                                                     ^
+C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   26 |   *           - Macros to access peripheral<92>s registers hardware
+      |                                            ^
+12 warnings generated.
+compiling timer.c...
 main.c(1): warning: In file included from...
 ./main.h(3): warning: In file included from...
 ./timer.h(4): warning: In file included from...
@@ -267,94 +310,45 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-main.c(1): warning: In file included from...
-./main.h(5): warning: In file included from...
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                       ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                      ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                              ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                                               ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                                                     ^
-./i2c.h(9): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    9 | // <D0>?nh nghia h?ng s? speed mode
-      |    ^
-./i2c.h(13): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   13 | // <D0>?nh nghia h?ng s? ACK v<E0> NACK
-      |    ^
-./i2c.h(13): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   13 | // <D0>?nh nghia h?ng s? ACK v<E0> NACK
-      |                               ^
-./i2c.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 | // <D0>?nh nghia ki?u d? li?u v<E0> h?ng s? enum Status
-      |    ^
-./i2c.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 | // <D0>?nh nghia ki?u d? li?u v<E0> h?ng s? enum Status
-      |                                ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |    ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |                   ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |                          ^
-main.c(17): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   17 |     // Kh?i t?o m<E0>n h<EC>nh LCD
-      |                  ^
-main.c(17): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   17 |     // Kh?i t?o m<E0>n h<EC>nh LCD
-      |                         ^
-main.c(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   20 |     // Hi?n th? th<F4>ng di?p tr<EA>n m<E0>n h<EC>nh LCD
-      |                   ^
-main.c(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   20 |     // Hi?n th? th<F4>ng di?p tr<EA>n m<E0>n h<EC>nh LCD
-      |                                 ^
-main.c(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   20 |     // Hi?n th? th<F4>ng di?p tr<EA>n m<E0>n h<EC>nh LCD
-      |                                        ^
-main.c(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   20 |     // Hi?n th? th<F4>ng di?p tr<EA>n m<E0>n h<EC>nh LCD
-      |                                               ^
-main.c(71): warning: no previous prototype for function 'EXTI0_IRQHandler' [-Wmissing-prototypes]
-   71 | void EXTI0_IRQHandler(void) {
+main.c(18): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+   18 |     FLASH->ACR &= ~FLASH_ACR_LATENCY;
+      |                ~~ ^~~~~~~~~~~~~~~~~~
+main.c(97): warning: no previous prototype for function 'EXTI0_IRQHandler' [-Wmissing-prototypes]
+   97 | void EXTI0_IRQHandler(void) {
       |      ^
-main.c(71): note: declare 'static' if the function is not intended to be used outside of this translation unit
-   71 | void EXTI0_IRQHandler(void) {
+main.c(97): note: declare 'static' if the function is not intended to be used outside of this translation unit
+   97 | void EXTI0_IRQHandler(void) {
       | ^
       | static 
-main.c(79): warning: no previous prototype for function 'EXTI1_IRQHandler' [-Wmissing-prototypes]
-   79 | void EXTI1_IRQHandler(void) {
+main.c(105): warning: no previous prototype for function 'EXTI1_IRQHandler' [-Wmissing-prototypes]
+  105 | void EXTI1_IRQHandler(void) {
       |      ^
-main.c(79): note: declare 'static' if the function is not intended to be used outside of this translation unit
-   79 | void EXTI1_IRQHandler(void) {
+main.c(105): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  105 | void EXTI1_IRQHandler(void) {
       | ^
       | static 
-main.c(85): warning: no previous prototype for function 'TIM2_IRQHandler' [-Wmissing-prototypes]
-   85 | void TIM2_IRQHandler(void)
+main.c(111): warning: no previous prototype for function 'TIM2_IRQHandler' [-Wmissing-prototypes]
+  111 | void TIM2_IRQHandler(void)
       |      ^
-main.c(85): note: declare 'static' if the function is not intended to be used outside of this translation unit
-   85 | void TIM2_IRQHandler(void)
+main.c(111): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  111 | void TIM2_IRQHandler(void)
       | ^
       | static 
-main.c(94): warning: no previous prototype for function 'TIM3_IRQHandler' [-Wmissing-prototypes]
-   94 | void TIM3_IRQHandler(void) {
+main.c(120): warning: no previous prototype for function 'TIM3_IRQHandler' [-Wmissing-prototypes]
+  120 | void TIM3_IRQHandler(void) {
       |      ^
-main.c(94): note: declare 'static' if the function is not intended to be used outside of this translation unit
-   94 | void TIM3_IRQHandler(void) {
+main.c(120): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  120 | void TIM3_IRQHandler(void) {
       | ^
       | static 
-35 warnings generated.
+main.c(126): warning: no previous prototype for function 'EXTI3_IRQHandler' [-Wmissing-prototypes]
+  126 | void EXTI3_IRQHandler(void) {
+      |      ^
+main.c(126): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  126 | void EXTI3_IRQHandler(void) {
+      | ^
+      | static 
+18 warnings generated.
 compiling main.c...
 i2c.c(1): warning: In file included from...
 ./i2c.h(4): warning: In file included from...
@@ -409,220 +403,14 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-i2c.c(1): warning: In file included from...
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                       ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                      ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                              ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                                               ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                                                     ^
-./i2c.h(9): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    9 | // <D0>?nh nghia h?ng s? speed mode
-      |    ^
-./i2c.h(13): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   13 | // <D0>?nh nghia h?ng s? ACK v<E0> NACK
-      |    ^
-./i2c.h(13): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   13 | // <D0>?nh nghia h?ng s? ACK v<E0> NACK
-      |                               ^
-./i2c.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 | // <D0>?nh nghia ki?u d? li?u v<E0> h?ng s? enum Status
-      |    ^
-./i2c.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 | // <D0>?nh nghia ki?u d? li?u v<E0> h?ng s? enum Status
-      |                                ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |    ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |                   ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |                          ^
-i2c.c(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 |     // C?u h<EC>nh ch<E2>n SCL v<E0> SDA
-      |             ^
-i2c.c(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 |     // C?u h<EC>nh ch<E2>n SCL v<E0> SDA
-      |                      ^
-i2c.c(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 |     // C?u h<EC>nh ch<E2>n SCL v<E0> SDA
-      |                                 ^
-i2c.c(16): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   16 |         I2C1->CR2 = 0x8;  // C<E0>i d?t t?n s? 8MHz
-      |                               ^
-i2c.c(17): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   17 |         I2C1->CCR = speed_mode;  // C<E0>i d?t t?c d? truy?n
-      |                                      ^
-i2c.c(21): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   21 |         I2C2->CR2 = 0x8;  // C<E0>i d?t t?n s? 8MHz
-      |                               ^
-i2c.c(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 |         I2C2->CCR = speed_mode;  // C<E0>i d?t t?c d? truy?n
-      |                                      ^
-i2c.c(32): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   32 |         while (!(I2C1->SR1 & I2C_SR1_SB));  // <D0>?i t?i khi tr?ng th<E1>i start du?c x<E1>c nh?n
-      |                                                ^
-i2c.c(32): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   32 |         while (!(I2C1->SR1 & I2C_SR1_SB));  // <D0>?i t?i khi tr?ng th<E1>i start du?c x<E1>c nh?n
-      |                                                                       ^
-i2c.c(32): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   32 |         while (!(I2C1->SR1 & I2C_SR1_SB));  // <D0>?i t?i khi tr?ng th<E1>i start du?c x<E1>c nh?n
-      |                                                                                         ^
-i2c.c(35): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   35 |         while (!(I2C2->SR1 & I2C_SR1_SB));  // <D0>?i t?i khi tr?ng th<E1>i start du?c x<E1>c nh?n
-      |                                                ^
-i2c.c(35): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   35 |         while (!(I2C2->SR1 & I2C_SR1_SB));  // <D0>?i t?i khi tr?ng th<E1>i start du?c x<E1>c nh?n
-      |                                                                       ^
-i2c.c(35): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   35 |         while (!(I2C2->SR1 & I2C_SR1_SB));  // <D0>?i t?i khi tr?ng th<E1>i start du?c x<E1>c nh?n
-      |                                                                                         ^
-i2c.c(44): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   44 |         while (!(I2C1->SR1 & I2C_SR1_ADDR));  // <D0>?i t?i khi tr?ng th<E1>i d?a ch? du?c x<E1>c nh?n
-      |                                                  ^
-i2c.c(44): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   44 |         while (!(I2C1->SR1 & I2C_SR1_ADDR));  // <D0>?i t?i khi tr?ng th<E1>i d?a ch? du?c x<E1>c nh?n
-      |                                                                         ^
-i2c.c(44): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   44 |         while (!(I2C1->SR1 & I2C_SR1_ADDR));  // <D0>?i t?i khi tr?ng th<E1>i d?a ch? du?c x<E1>c nh?n
-      |                                                                                             ^
-i2c.c(45): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   45 |         (void) I2C1->SR2;  // <D0>?c SR2 d? clear di tr?ng th<E1>i d?a ch?
-      |                               ^
-i2c.c(45): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   45 |         (void) I2C1->SR2;  // <D0>?c SR2 d? clear di tr?ng th<E1>i d?a ch?
-      |                                                              ^
-i2c.c(48): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   48 |         while (!(I2C2->SR1 & I2C_SR1_ADDR));  // <D0>?i t?i khi tr?ng th<E1>i d?a ch? du?c x<E1>c nh?n
-      |                                                  ^
-i2c.c(48): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   48 |         while (!(I2C2->SR1 & I2C_SR1_ADDR));  // <D0>?i t?i khi tr?ng th<E1>i d?a ch? du?c x<E1>c nh?n
-      |                                                                         ^
-i2c.c(48): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   48 |         while (!(I2C2->SR1 & I2C_SR1_ADDR));  // <D0>?i t?i khi tr?ng th<E1>i d?a ch? du?c x<E1>c nh?n
-      |                                                                                             ^
-i2c.c(49): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   49 |         (void) I2C2->SR2;  // <D0>?c SR2 d? clear di tr?ng th<E1>i d?a ch?
-      |                               ^
-i2c.c(49): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   49 |         (void) I2C2->SR2;  // <D0>?c SR2 d? clear di tr?ng th<E1>i d?a ch?
-      |                                                              ^
-i2c.c(58): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   58 |         while (!(I2C1->SR1 & I2C_SR1_TXE));  // <D0>?i t?i khi thanh ghi truy?n r?ng
-      |                                                 ^
-i2c.c(61): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   61 |         while (!(I2C2->SR1 & I2C_SR1_TXE));  // <D0>?i t?i khi thanh ghi truy?n r?ng
-      |                                                 ^
 i2c.c(81): warning: unsafe buffer access [-Wunsafe-buffer-usage]
    81 |     while (data[i] != '\0') {
       |            ^~~~
 i2c.c(82): warning: unsafe buffer access [-Wunsafe-buffer-usage]
    82 |         i2c_data(i2c, data[i]);
       |                       ^~~~
-52 warnings generated.
+14 warnings generated.
 compiling i2c.c...
-gpio.c(1): warning: In file included from...
-./gpio.h(3): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
-      |                                                ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 |   *                code will be based on direct access to peripheral<92>s registers 
-      |                                                                     ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   26 |   *           - Macros to access peripheral<92>s registers hardware
-      |                                            ^
-gpio.c(1): warning: In file included from...
-./gpio.h(3): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
-./RTE/Device/STM32F103C8\stm32f10x_conf.h(63): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_gpio.h(31): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
-      |                                                ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 |   *                code will be based on direct access to peripheral<92>s registers 
-      |                                                                     ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   26 |   *           - Macros to access peripheral<92>s registers hardware
-      |                                            ^
-gpio.c(1): warning: In file included from...
-./gpio.h(3): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
-./RTE/Device/STM32F103C8\stm32f10x_conf.h(75): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_rcc.h(31): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
-      |                                                ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 |   *                code will be based on direct access to peripheral<92>s registers 
-      |                                                                     ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   26 |   *           - Macros to access peripheral<92>s registers hardware
-      |                                            ^
-gpio.c(1): warning: In file included from...
-./gpio.h(3): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(8347): warning: In file included from...
-./RTE/Device/STM32F103C8\stm32f10x_conf.h(96): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\misc.h(31): warning: In file included from...
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   18 |   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
-      |                                                ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 |   *                code will be based on direct access to peripheral<92>s registers 
-      |                                                                     ^
-C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   26 |   *           - Macros to access peripheral<92>s registers hardware
-      |                                            ^
-gpio.c(15): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   15 |     // Thi?t l?p c?u h<EC>nh ch<E2>n GPIO
-      |                       ^
-gpio.c(15): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   15 |     // Thi?t l?p c?u h<EC>nh ch<E2>n GPIO
-      |                                ^
-gpio.c(17): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   17 |         // Ch<E2>n 0-7 s? d?ng thanh ghi CRL
-      |              ^
-gpio.c(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 |             GPIOA->CRL &= ~(0xFU << (PIN * 4)); // clear 4 bit trong thanh ghi c?u h<EC>nh
-      |                                                                                     ^
-gpio.c(23): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   23 |             GPIOB->CRL &= ~(0xFU << (PIN * 4)); // clear 4 bit trong thanh ghi c?u h<EC>nh
-      |                                                                                     ^
-gpio.c(27): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   27 |             GPIOC->CRL &= ~(0xFU << (PIN * 4)); // clear 4 bit trong thanh ghi c?u h<EC>nh
-      |                                                                                     ^
-gpio.c(31): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   31 |         // Ch<E2>n 8-15 s? d?ng thanh ghi CRH
-      |              ^
-gpio.c(33): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   33 |             GPIOA->CRH &= ~(0xFU << ((PIN - 8) * 4)); // clear 4 bit trong thanh ghi c?u h<EC>nh
-      |                                                                                           ^
-gpio.c(37): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   37 |             GPIOB->CRH &= ~(0xFU << ((PIN - 8) * 4)); // clear 4 bit trong thanh ghi c?u h<EC>nh
-      |                                                                                           ^
-gpio.c(41): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   41 |             GPIOC->CRH &= ~(0xFU << ((PIN - 8) * 4)); // clear 4 bit trong thanh ghi c?u h<EC>nh
-      |                                                                                           ^
-gpio.c(97): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   97 |     uint32_t pin_mask = (1 << PIN);  // Chuy?n d?i PIN th<E0>nh gi<E1> tr? bit
-      |                                                          ^
-gpio.c(97): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   97 |     uint32_t pin_mask = (1 << PIN);  // Chuy?n d?i PIN th<E0>nh gi<E1> tr? bit
-      |                                                                   ^
-24 warnings generated.
-compiling gpio.c...
 lcd.c(1): warning: In file included from...
 ./lcd.h(4): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(18): warning: invalid UTF-8 in comment [-Winvalid-utf8]
@@ -676,47 +464,6 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include\stm32f10x.h(26): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
-lcd.c(1): warning: In file included from...
-./lcd.h(5): warning: In file included from...
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                       ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                      ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                              ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                                               ^
-./i2c.h(7): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    7 | #include "gpio.h"  // <D0>ua gpio.h l<EA>n tr<EA>n systick.h v<EC> n<F3> du?c s? d?ng trong i2c.h
-      |                                                                     ^
-./i2c.h(9): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-    9 | // <D0>?nh nghia h?ng s? speed mode
-      |    ^
-./i2c.h(13): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   13 | // <D0>?nh nghia h?ng s? ACK v<E0> NACK
-      |    ^
-./i2c.h(13): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   13 | // <D0>?nh nghia h?ng s? ACK v<E0> NACK
-      |                               ^
-./i2c.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 | // <D0>?nh nghia ki?u d? li?u v<E0> h?ng s? enum Status
-      |    ^
-./i2c.h(19): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   19 | // <D0>?nh nghia ki?u d? li?u v<E0> h?ng s? enum Status
-      |                                ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |    ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |                   ^
-./i2c.h(22): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   22 | // <D0>?nh nghia c<E1>c h<E0>m API cho thu vi?n I2C
-      |                          ^
 lcd.c(149): warning: implicit conversion loses integer precision: 'int' to 'unsigned char' [-Wimplicit-int-conversion]
   149 |         lcd_i2c_cmd(i2c,0x80 +pos + pos_0_16);
       |         ~~~~~~~~~~~     ~~~~~~~~~~^~~~~~~~~~
@@ -726,7 +473,7 @@ lcd.c(131): warning: unsafe buffer access [-Wunsafe-buffer-usage]
 lcd.c(133): warning: unsafe buffer access [-Wunsafe-buffer-usage]
   133 |                         lcd_i2c_data(i2c, str[i]);
       |                                           ^~~
-28 warnings generated.
+15 warnings generated.
 compiling lcd.c...
 uart.c(1): warning: In file included from...
 ./uart.h(8): warning: In file included from...
@@ -782,10 +529,10 @@ C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device
    26 |   *           - Macros to access peripheral<92>s registers hardware
       |                                            ^
 uart.c(16): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-   16 |                 USART1->BRR = 0b1110101000110; 
+   16 |                 USART1->BRR = 0b111010100011; 
       |                               ^
 uart.c(19): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-   19 |                 USART1->BRR = 0b000001001110001;
+   19 |                 USART1->BRR = 0b100111000;
       |                               ^
 uart.c(36): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
    36 |                 USART2->BRR = 0b111010100011; 
@@ -888,19 +635,10 @@ interrupt.c(5): warning: a function declaration without a prototype is deprecate
       |                void
 13 warnings generated.
 compiling interrupt.c...
-mpu6050.c(48): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   48 |         // XA_ST=0,YA_ST=0,ZA_ST=0, FS_SEL=0 -> <B1> 2g
-      |                                                 ^
-mpu6050.c(57): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   57 |         // XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> <B1> 250 <B0>/s
-      |                                                 ^
-mpu6050.c(57): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   57 |         // XG_ST=0,YG_ST=0,ZG_ST=0, FS_SEL=0 -> <B1> 250 <B0>/s
-      |                                                          ^
-mpu6050.c(192): warning: ISO C requires a translation unit to contain at least one declaration [-Wempty-translation-unit]
-  192 | } */
+mpu6050.c(189): warning: ISO C requires a translation unit to contain at least one declaration [-Wempty-translation-unit]
+  189 | } */
       |     ^
-4 warnings generated.
+1 warning generated.
 compiling mpu6050.c...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/src/misc.c(23): warning: In file included from...
 C:/Users/NGUYEN VIET DUC/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\misc.h(31): warning: In file included from...
@@ -1132,9 +870,9 @@ RTE/Device/STM32F103C8/system_stm32f10x.c(408): warning: unsafe buffer access [-
 14 warnings generated.
 compiling system_stm32f10x.c...
 linking...
-Program Size: Code=4788 RO-data=268 RW-data=4 ZI-data=1648  
+Program Size: Code=5234 RO-data=302 RW-data=8 ZI-data=1648  
 FromELF: creating hex file...
-".\Objects\fall_detect.axf" - 0 Error(s), 272 Warning(s).
+".\Objects\fall_detect.axf" - 0 Error(s), 185 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -1165,17 +903,17 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@5.6.0
 
    * Component: Keil::Device:Startup@1.0.0
+      Source file:   Device/Source/ARM/startup_stm32f10x_md.s
+      Source file:   Device/Source/system_stm32f10x.c
       Include file:  RTE_Driver/Config/RTE_Device.h
       Source file:   Device/Source/ARM/STM32F1xx_OPT.s
-      Source file:   Device/Source/system_stm32f10x.c
-      Source file:   Device/Source/ARM/startup_stm32f10x_md.s
 
    * Component: Keil::Device:StdPeriph Drivers:Framework@3.6.0
-      Source file:   Device/StdPeriph_Driver/templates/stm32f10x_conf.h
       Include file:  Device/StdPeriph_Driver/templates/stm32f10x_it.h
-      Include file:  Device/StdPeriph_Driver/inc/misc.h
       Source file:   Device/StdPeriph_Driver/templates/stm32f10x_it.c
+      Source file:   Device/StdPeriph_Driver/templates/stm32f10x_conf.h
       Source file:   Device/StdPeriph_Driver/src/misc.c
+      Include file:  Device/StdPeriph_Driver/inc/misc.h
 
    * Component: Keil::Device:StdPeriph Drivers:GPIO@3.6.0
       Source file:   Device/StdPeriph_Driver/src/stm32f10x_gpio.c
@@ -1184,7 +922,7 @@ Package Vendor: Keil
    * Component: Keil::Device:StdPeriph Drivers:RCC@3.6.0
       Include file:  Device/StdPeriph_Driver/inc/stm32f10x_rcc.h
       Source file:   Device/StdPeriph_Driver/src/stm32f10x_rcc.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

@@ -1,7 +1,7 @@
 #include "gpio.h"
 
 void gpio_init(unsigned short PORT, unsigned short PIN, unsigned int CNF, unsigned int MODE) {
-    // B?t clock cho c?ng GPIO tuong ?ng
+ 
     if (PORT == PortA) {
         RCC->APB2ENR |= (1 << 2); // enable GPIOA
     }
@@ -12,38 +12,38 @@ void gpio_init(unsigned short PORT, unsigned short PIN, unsigned int CNF, unsign
         RCC->APB2ENR |= (1 << 4); // enable GPIOC
     }
 
-    // Thi?t l?p c?u hình chân GPIO
+  
     if (PIN < 8) {
-        // Chân 0-7 s? d?ng thanh ghi CRL
+        
         if (PORT == PortA) {
-            GPIOA->CRL &= ~(0xFU << (PIN * 4)); // clear 4 bit trong thanh ghi c?u hình
+            GPIOA->CRL &= ~(0xFU << (PIN * 4)); 
             GPIOA->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
         }
         else if (PORT == PortB) {
-            GPIOB->CRL &= ~(0xFU << (PIN * 4)); // clear 4 bit trong thanh ghi c?u hình
+            GPIOB->CRL &= ~(0xFU << (PIN * 4)); 
             GPIOB->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
         }
         else if (PORT == PortC) {
-            GPIOC->CRL &= ~(0xFU << (PIN * 4)); // clear 4 bit trong thanh ghi c?u hình
+            GPIOC->CRL &= ~(0xFU << (PIN * 4));
             GPIOC->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
         }
     } else {
-        // Chân 8-15 s? d?ng thanh ghi CRH
+       
         if (PORT == PortA) {
-            GPIOA->CRH &= ~(0xFU << ((PIN - 8) * 4)); // clear 4 bit trong thanh ghi c?u hình
+            GPIOA->CRH &= ~(0xFU << ((PIN - 8) * 4)); 
             GPIOA->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
         }
         else if (PORT == PortB) {
-            GPIOB->CRH &= ~(0xFU << ((PIN - 8) * 4)); // clear 4 bit trong thanh ghi c?u hình
+            GPIOB->CRH &= ~(0xFU << ((PIN - 8) * 4)); 
             GPIOB->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
         }
         else if (PORT == PortC) {
-            GPIOC->CRH &= ~(0xFU << ((PIN - 8) * 4)); // clear 4 bit trong thanh ghi c?u hình
+            GPIOC->CRH &= ~(0xFU << ((PIN - 8) * 4));
             GPIOC->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
         }
     }
 
-    // Thi?t l?p pull-up n?u CNF == IN_PUSHPULL (tuong ?ng v?i IN_PULLUP)
+   
     if (CNF == IN_PUSHPULL && MODE == IN) {
         switch (PORT) {
             case PortA:
@@ -94,7 +94,7 @@ void gpio_write(unsigned short PORT, unsigned short PIN, unsigned short value) {
 }
 
 uint8_t gpio_read(unsigned short PORT, unsigned short PIN) {
-    uint32_t pin_mask = (1 << PIN);  // Chuy?n d?i PIN thành giá tr? bit
+    uint32_t pin_mask = (1 << PIN);  
 
     switch (PORT) {
         case PortA:
