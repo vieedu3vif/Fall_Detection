@@ -8,7 +8,7 @@
 #include "interrupt.h"
 #include "button.h"
 #include "gpio.h"
-
+#include "mpu6050.h"
 
 extern volatile int LEDG;
 extern volatile int STATE;

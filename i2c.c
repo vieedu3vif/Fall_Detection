@@ -3,20 +3,19 @@
 I2C_Status i2c_init(uint8_t i2c, unsigned short speed_mode) {
 
     RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
-
-
-    gpio_init(PortB, 6, OUT_AF_OD, OUT50);
-    gpio_init(PortB, 7, OUT_AF_OD, OUT50);
-	  gpio_init(PortB, 10, OUT_AF_OD, OUT50);
-    gpio_init(PortB, 11, OUT_AF_OD, OUT50);
-
     
     if (i2c == I2C_1) {
+			  gpio_init(PortB, 6, OUT_AF_OD, OUT50);
+        gpio_init(PortB, 7, OUT_AF_OD, OUT50);
+			
         RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
         I2C1->CR2 = 0x8;  
         I2C1->CCR = speed_mode; 
         I2C1->CR1 |= I2C_CR1_PE; 
     } else if (i2c == I2C_2) {
+			  gpio_init(PortB, 10, OUT_AF_OD, OUT50);
+        gpio_init(PortB, 11, OUT_AF_OD, OUT50);
+			
         RCC->APB1ENR |= RCC_APB1ENR_I2C2EN;
         I2C2->CR2 = 0x8;  
         I2C2->CCR = speed_mode;  
@@ -86,3 +85,25 @@ I2C_Status i2c_write(uint8_t i2c, char address, char data[]) {
 
     return I2C_Success;
 }
+uint8_t i2c_read(uint8_t i2c, uint8_t ack) {
+    uint8_t data;
+    if (i2c == I2C_1) {
+        while (!(I2C1->SR1 & I2C_SR1_RXNE));
+        data = I2C1->DR;
+        if (ack) {
+            I2C1->CR1 |= I2C_CR1_ACK;
+        } else {
+            I2C1->CR1 &= ~I2C_CR1_ACK;
+        }
+    } else if (i2c == I2C_2) {
+        while (!(I2C2->SR1 & I2C_SR1_RXNE));
+        data = I2C2->DR;
+        if (ack) {
+            I2C2->CR1 |= I2C_CR1_ACK;
+        } else {
+            I2C2->CR1 &= ~I2C_CR1_ACK;
+        }
+    }
+    return data;
+}
+

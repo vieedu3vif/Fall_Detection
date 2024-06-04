@@ -25,5 +25,6 @@ I2C_Status i2c_write(uint8_t i2c, char address, char data[]);
 I2C_Status i2c_data(uint8_t i2c, char data);
 I2C_Status i2c_start(uint8_t i2c);
 I2C_Status i2c_stop(uint8_t i2c);
+uint8_t i2c_read(uint8_t i2c, uint8_t ack);
 
 #endif

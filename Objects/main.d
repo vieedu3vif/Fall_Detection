@@ -13,4 +13,5 @@
   C:\Users\NGUYEN\ VIET\ DUC\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_rcc.h \
   C:\Users\NGUYEN\ VIET\ DUC\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
   led.h gpio.h C:\Keil_v5\ARM\ARMCLANG\include\stdbool.h i2c.h lcd.h \
-  uart.h systick.h interrupt.h button.h
+  uart.h systick.h interrupt.h button.h mpu6050.h \
+  C:\Keil_v5\ARM\ARMCLANG\include\math.h

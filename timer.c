@@ -19,7 +19,7 @@ void timer_init(void)
 	   
 	  RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
 	  TIM3->PSC = ((uint16_t)(SystemCoreClock / 1000)) - 1;  
-    TIM3->ARR = (2500-1);
+    TIM3->ARR = (1000-1);
     TIM3->DIER |= TIM_DIER_UIE;  
     TIM3->CR1 |= TIM_CR1_CEN; 
 }

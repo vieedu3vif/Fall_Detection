@@ -48,23 +48,28 @@ int main (void) {
 	timer_init();
 	
   i2c_init(I2C_1, I2C_FM);
-	i2c_init(I2C_1, I2C_FM);
 
    
     lcd_i2c_init(I2C_1);
-
+	  uint8_t check = MPU6050_Init(I2C_2);
+	MPU6050 mpu;
    
   button_init(0);
 	button_init(sw2);
 	led_init(5);
 	led_init(2);
-	  intr_init();
-	 lcd_i2c_msg(I2C_1, 1, 0, "Vietduc03 - A+");
-//	uart_init(UART3, BR_115200);			
+	intr_init();
+//	 lcd_i2c_msg(I2C_1, 1, 0, "Vietduc03 - A+");
+	 
+//	uart_init(UART3, BR_115200);	
+char buffer[50];	
  while(1) {
-
-	// delay_ms(500);
-	 //	lcd_i2c_cmd(I2C_1, 0x01); 
+	 
+	 MPU6050_Read_Accel(I2C_2, &mpu);
+	 snprintf(buffer, sizeof(buffer), "X: %.2f, Y: %.2f, Z: %.2f", mpu.Ax, mpu.Ay, mpu.Az);
+	 lcd_i2c_msg(I2C_1, 1,0,  buffer);
+	 delay_ms(500);
+  	lcd_i2c_cmd(I2C_1, 0x01); 
 	 	// delay_ms(500); 
 	 if (STATE == 1) {
            
