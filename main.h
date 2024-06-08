@@ -16,4 +16,5 @@ extern volatile int LEDR;
 extern volatile int FALL;
 
 void SystemClock_Config(void);
+void fallDetect(uint8_t i2c, MPU6050 *mpu);
 int main(void);

@@ -7,7 +7,7 @@ void intr_init(){
 	RCC->APB2ENR |= (1 << 0);
 	__disable_irq();
 	AFIO->EXTICR[0]  &= ~(0xFU << 0);
-
+  AFIO->EXTICR[0] |= (0x0 << 0);   
 	
 	EXTI->IMR &= ~(unsigned int)(1 << 0);
 	EXTI->IMR |= (1 << 0 );
@@ -20,12 +20,14 @@ void intr_init(){
 	NVIC_EnableIRQ(EXTI0_IRQn);
 	 
     AFIO->EXTICR[0] &= ~(0xFU << 4); 
+	 AFIO->EXTICR[0] |= (0x0 << 4);   
     EXTI->IMR &= ~(unsigned int)(1 << 1); 
     EXTI->IMR |= (1 << 1); 
     EXTI->FTSR |= (1 << 1); 
     EXTI->RTSR &= ~(unsigned int)(1 << 1); 
     
 		AFIO->EXTICR[0] &= ~(0xFU << 12); 
+		AFIO->EXTICR[0] |= (0x0 << 12);   
     EXTI->IMR &= ~(unsigned int)(1 << 3); 
     EXTI->IMR |= (1 << 3); 
     EXTI->FTSR |= (1 << 3); 

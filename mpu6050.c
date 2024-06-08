@@ -15,7 +15,7 @@ Kalman_t KalmanY = {
 };
 
 uint8_t MPU6050_Init(uint8_t i2c) {
-	  i2c_init(i2c, I2C_FM);
+	//  i2c_init(i2c, I2C_FM);
 	
     uint8_t check;
 	  check = MPU6050_ReadReg(i2c, WHO_AM_I_REG);
