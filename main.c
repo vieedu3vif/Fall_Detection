@@ -61,14 +61,8 @@ int main (void) {
 	intr_init();
 //	 	 lcd_i2c_msg(I2C_1, 1, 0, "Vietduc03 - B+");
 //	uart_init(UART3, BR_115200);	
-char buffer[50];	
+//char buffer[50];	
  while(1) {
-/*	 MPU6050_Read_Accel(I2C_2, &mpu);
-	 snprintf(buffer, sizeof(buffer), "X: %.2f, Y: %.2f, Z: %.2f", mpu.Ax, mpu.Ay, mpu.Az);
-	 lcd_i2c_msg(I2C_1, 1,0,  buffer);
-	 delay_ms(500);
-  	lcd_i2c_cmd(I2C_1, 0x01); 
-	 	// delay_ms(500); */
 	 
      if (STATE == 1) {
 			 fallDetect(I2C_2, &mpu);
@@ -92,8 +86,6 @@ char buffer[50];
 						
 						else {
 							lcd_i2c_msg(I2C_1, 1,0,  "NORMAL!!");
-						/*	 snprintf(buffer, sizeof(buffer), "X: %.2f, Y: %.2f, Z: %.2f", mpu.Gx, mpu.Gy, mpu.Gz);
-            	 lcd_i2c_msg(I2C_1, 1,0,  buffer); */
 							led_off(2);
 							}
         } else {
@@ -116,20 +108,9 @@ void EXTI0_IRQHandler(void) {
  
     if (EXTI->PR & (1 << 0 )) {
         EXTI->PR |= (1 << 0 );
-			 delay_ms(20); 
-        if (GPIOA->IDR & (1 << 0)) {
             STATE = !STATE;
-        }
    } 
 } 
-
-/*
-void EXTI1_IRQHandler(void) {
-	if (EXTI->PR & (1 << 1)) {   
-      EXTI->PR |= (1 << 1);
-		  FALL = !FALL;
-		}
-} */
 void TIM2_IRQHandler(void)
 {
     if (TIM2->SR & TIM_SR_UIF) 
@@ -148,28 +129,28 @@ void TIM3_IRQHandler(void) {
 void EXTI3_IRQHandler(void) {
 	if (EXTI->PR & (1 << 3)) {   
       EXTI->PR |= (1 << 3);
-		  			 delay_ms(20); 
-        if (GPIOA->IDR & (1 << 3)) {
             FALL = 0;
-        }
+		
+		
 		}
 }
 
 void fallDetect(uint8_t i2c, MPU6050 *mpu) {
     double acc[6]; 
 
-    MPU6050_Read_Gyro(i2c, mpu);
-    acc[0] = mpu->Gx;
-    acc[1] = mpu->Gy;
-    acc[2] = mpu->Gz;
+    MPU6050_Read_Accel(i2c, mpu);
+	  MPU6050_Read_Gyro(i2c, mpu);
+	
+    acc[0] = mpu->Ax;
+    acc[1] = mpu->Ay;
+    acc[2] = mpu->Az;
     
-    delay_ms(100);
-    MPU6050_Read_Gyro(i2c, mpu);
     acc[3] = mpu->Gx;
     acc[4] = mpu->Gy;
     acc[5] = mpu->Gz;
    
-    if((fabs(acc[3] + acc[4] + acc[5]) - fabs(acc[0] - acc[1] - acc[2])) > 80) {
+    if(sqrt(pow(acc[0], 2)+ pow(acc[1], 2)+pow(acc[2], 2)) >= 0.55 && sqrt(pow(acc[3], 2)+ pow(acc[3], 2)+pow(acc[3], 2)) >= 300 ) {
 		FALL = 1;
-    }
+		}
+		delay_ms(100);
 } 

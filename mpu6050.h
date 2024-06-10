@@ -69,7 +69,6 @@ uint8_t MPU6050_Init(uint8_t i2c);
 void MPU6050_Read_Accel(uint8_t i2c, MPU6050 *DataStruct);
 void MPU6050_Read_Gyro(uint8_t i2c, MPU6050 *DataStruct);
 void MPU6050_Read_Temp(uint8_t i2c, MPU6050 *DataStruct);
-double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double dt);
-void MPU6050_Read_All(uint8_t i2c, MPU6050 *DataStruct);
 void MPU6050_WriteReg(uint8_t i2c, uint8_t reg, uint8_t value);
 uint8_t MPU6050_ReadReg(uint8_t i2c, uint8_t reg);
+

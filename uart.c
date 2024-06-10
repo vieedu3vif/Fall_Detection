@@ -87,17 +87,17 @@ char uart_rx(unsigned int usart) {
     char c;
     if(usart == UART1) {
         while((USART1->SR & (1 << 5)) == 0x00) {
-            // Wait until RXNE (Read Data Register Not Empty) flag is set
+            
         }
         c = USART1->DR;
     } else if(usart == UART2) {
         while((USART2->SR & (1 << 5)) == 0x00) {
-            // Wait until RXNE (Read Data Register Not Empty) flag is set
+            
         }
         c = USART2->DR;
     } else if(usart == UART3) {
         while((USART3->SR & (1 << 5)) == 0x00) {
-            // Wait until RXNE (Read Data Register Not Empty) flag is set
+            
         }
         c = USART3->DR;
     }

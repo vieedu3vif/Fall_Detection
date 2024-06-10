@@ -73,9 +73,9 @@ void MPU6050_Read_Gyro(uint8_t i2c, MPU6050 *DataStruct) {
     DataStruct->Gyro_Y_RAW = (int16_t)(Rec_Data[2] << 8 | Rec_Data[3]);
     DataStruct->Gyro_Z_RAW = (int16_t)(Rec_Data[4] << 8 | Rec_Data[5]);
 
-    DataStruct->Gx = DataStruct->Gyro_X_RAW / 131.0;
-    DataStruct->Gy = DataStruct->Gyro_Y_RAW / 131.0;
-    DataStruct->Gz = DataStruct->Gyro_Z_RAW / 131.0;
+    DataStruct->Gx = DataStruct->Gyro_X_RAW / 65.5;
+    DataStruct->Gy = DataStruct->Gyro_Y_RAW / 65.5;
+    DataStruct->Gz = DataStruct->Gyro_Z_RAW / 65.5;
 }
 uint8_t MPU6050_ReadReg(uint8_t i2c, uint8_t reg) {
     uint8_t value;
@@ -103,55 +103,3 @@ void MPU6050_Read_Temp(uint8_t i2c, MPU6050 *DataStruct) {
     DataStruct->Temperature = (double)(temp / 340.0 + 36.53);
 }
 
-double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double dt) {
-    // Predict
-    Kalman->angle += dt * (newRate - Kalman->bias);
-    Kalman->P[0][0] += dt * (dt * Kalman->P[1][1] - Kalman->P[0][1] - Kalman->P[1][0] + Kalman->Q_angle);
-    Kalman->P[0][1] -= dt * Kalman->P[1][1];
-    Kalman->P[1][0] -= dt * Kalman->P[1][1];
-    Kalman->P[1][1] += Kalman->Q_bias * dt;
-
-    // Update
-    double S = Kalman->P[0][0] + Kalman->R_measure;
-    double K[2];
-    K[0] = Kalman->P[0][0] / S;
-    K[1] = Kalman->P[1][0] / S;
-
-    double y = newAngle - Kalman->angle;
-    Kalman->angle += K[0] * y;
-    Kalman->bias += K[1] * y;
-
-    double P00_temp = Kalman->P[0][0];
-    double P01_temp = Kalman->P[0][1];
-
-    Kalman->P[0][0] -= K[0] * P00_temp;
-    Kalman->P[0][1] -= K[0] * P01_temp;
-    Kalman->P[1][0] -= K[1] * P00_temp;
-    Kalman->P[1][1] -= K[1] * P01_temp;
-
-    return Kalman->angle;
-}
-
-void MPU6050_Read_All(uint8_t i2c, MPU6050 *DataStruct) {
-    double dt = 0.005; // 5 ms
-
-    MPU6050_Read_Accel(i2c, DataStruct);
-    MPU6050_Read_Gyro(i2c, DataStruct);
-    MPU6050_Read_Temp(i2c, DataStruct);
-
-    double roll = atan(DataStruct->Accel_Y_RAW / sqrt(pow(DataStruct->Accel_X_RAW, 2) + pow(DataStruct->Accel_Z_RAW, 2))) * RAD_TO_DEG;
-    double pitch =  atan2(-DataStruct->Accel_X_RAW, DataStruct->Accel_Z_RAW) * RAD_TO_DEG;
-
-    if ((pitch < -90 && DataStruct->KalmanAngleY > 90) || (pitch > 90 && DataStruct->KalmanAngleY < -90)) {
-        KalmanY.angle = pitch;
-        DataStruct->KalmanAngleY = pitch;
-    } else {
-        DataStruct->KalmanAngleY = Kalman_getAngle(&KalmanY, pitch, DataStruct->Gy, dt);
-    }
-
-    if (fabs(DataStruct->KalmanAngleY) > 90) {
-        DataStruct->Gx = -DataStruct->Gx;
-    }
-
-    DataStruct->KalmanAngleX = Kalman_getAngle(&KalmanX, roll, DataStruct->Gx, dt);
-} 
