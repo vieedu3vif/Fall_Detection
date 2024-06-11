@@ -1,109 +1,58 @@
 #include "gpio.h"
 
+static GPIO_TypeDef* get_port_base(unsigned short PORT) {
+    switch (PORT) {
+        case PortA: return GPIOA;
+        case PortB: return GPIOB;
+        case PortC: return GPIOC;
+        default: return (GPIO_TypeDef*)0; 
+    }
+}
+
+static void enable_port_clock(unsigned short PORT) {
+    switch (PORT) {
+        case PortA: RCC->APB2ENR |= (1 << 2); break; // Enable GPIOA
+        case PortB: RCC->APB2ENR |= (1 << 3); break; // Enable GPIOB
+        case PortC: RCC->APB2ENR |= (1 << 4); break; // Enable GPIOC
+    }
+}
+
 void gpio_init(unsigned short PORT, unsigned short PIN, unsigned int CNF, unsigned int MODE) {
- 
-    if (PORT == PortA) {
-        RCC->APB2ENR |= (1 << 2); // enable GPIOA
-    }
-    else if (PORT == PortB) {
-        RCC->APB2ENR |= (1 << 3); // enable GPIOB
-    }
-    else if (PORT == PortC) {
-        RCC->APB2ENR |= (1 << 4); // enable GPIOC
-    }
+    enable_port_clock(PORT);
+    GPIO_TypeDef* port = get_port_base(PORT);
 
-  
+    if (port == (GPIO_TypeDef*)0) return;
+
     if (PIN < 8) {
-        
-        if (PORT == PortA) {
-            GPIOA->CRL &= ~(0xFU << (PIN * 4)); 
-            GPIOA->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
-        }
-        else if (PORT == PortB) {
-            GPIOB->CRL &= ~(0xFU << (PIN * 4)); 
-            GPIOB->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
-        }
-        else if (PORT == PortC) {
-            GPIOC->CRL &= ~(0xFU << (PIN * 4));
-            GPIOC->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
-        }
+        port->CRL &= ~(0xFU << (PIN * 4)); 
+        port->CRL |= (MODE << (PIN * 4)) | (CNF << (PIN * 4 + 2));
     } else {
-       
-        if (PORT == PortA) {
-            GPIOA->CRH &= ~(0xFU << ((PIN - 8) * 4)); 
-            GPIOA->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
-        }
-        else if (PORT == PortB) {
-            GPIOB->CRH &= ~(0xFU << ((PIN - 8) * 4)); 
-            GPIOB->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
-        }
-        else if (PORT == PortC) {
-            GPIOC->CRH &= ~(0xFU << ((PIN - 8) * 4));
-            GPIOC->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
-        }
+        port->CRH &= ~(0xFU << ((PIN - 8) * 4)); 
+        port->CRH |= (MODE << ((PIN - 8) * 4)) | (CNF << ((PIN - 8) * 4 + 2));
     }
 
-   
     if (CNF == IN_PUSHPULL && MODE == IN) {
-        switch (PORT) {
-            case PortA:
-                GPIOA->ODR |= (1 << PIN);
-                break;
-            case PortB:
-                GPIOB->ODR |= (1 << PIN);
-                break;
-            case PortC:
-                GPIOC->ODR |= (1 << PIN);
-                break;
-            default:
-                break;
-        }
+        port->ODR |= (1 << PIN);
     }
 }
 
 void gpio_write(unsigned short PORT, unsigned short PIN, unsigned short value) {
+    GPIO_TypeDef* port = get_port_base(PORT);
+
+    if (port == (GPIO_TypeDef*)0) return;
+
     if (value == GPIO_PIN_SET) {
-        switch (PORT) {
-            case PortA:
-                GPIOA->BSRR = (1 << PIN);
-                break;
-            case PortB:
-                GPIOB->BSRR = (1 << PIN);
-                break;
-            case PortC:
-                GPIOC->BSRR = (1 << PIN);
-                break;
-            default:
-                break;
-        }
+        port->BSRR = (1 << PIN);
     } else {
-        switch (PORT) {
-            case PortA:
-                GPIOA->BSRR = (1 << (PIN + 16));
-                break;
-            case PortB:
-                GPIOB->BSRR = (1 << (PIN + 16));
-                break;
-            case PortC:
-                GPIOC->BSRR = (1 << (PIN + 16));
-                break;
-            default:
-                break;
-        }
+        port->BSRR = (1 << (PIN + 16));
     }
 }
 
 uint8_t gpio_read(unsigned short PORT, unsigned short PIN) {
-    uint32_t pin_mask = (1 << PIN);  
+    GPIO_TypeDef* port = get_port_base(PORT);
 
-    switch (PORT) {
-        case PortA:
-            return ((GPIOA->IDR & pin_mask) != 0) ? GPIO_PIN_SET : GPIO_PIN_RESET;
-        case PortB:
-            return ((GPIOB->IDR & pin_mask) != 0) ? GPIO_PIN_SET : GPIO_PIN_RESET;
-        case PortC:
-            return ((GPIOC->IDR & pin_mask) != 0) ? GPIO_PIN_SET : GPIO_PIN_RESET;
-        default:
-            return GPIO_PIN_RESET; 
-    }
+    if (port == (GPIO_TypeDef*)0) return GPIO_PIN_RESET;
+
+    uint32_t pin_mask = (1 << PIN);
+    return ((port->IDR & pin_mask) != 0) ? GPIO_PIN_SET : GPIO_PIN_RESET;
 }

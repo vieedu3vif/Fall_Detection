@@ -12,14 +12,14 @@ void timer_init(void)
     TIM4->CR1 = TIM_CR1_CEN;
 	
 	  RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
-	  TIM2->PSC = ((uint16_t)(SystemCoreClock / 1000)) - 1;
-    TIM2->ARR = 5000-1;  
+	  TIM2->PSC = (SystemCoreClock / 1000000) - 1;
+    TIM2->ARR = 1000000 - 1;  
     TIM2->DIER |= TIM_DIER_UIE;  
     TIM2->CR1 |= TIM_CR1_CEN;  
 	   
 	  RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
-	  TIM3->PSC = ((uint16_t)(SystemCoreClock / 1000)) - 1;  
-    TIM3->ARR = (1000-1);
+	  TIM3->PSC = (SystemCoreClock / 1000000) - 1;  
+    TIM3->ARR = 500000 - 1;
     TIM3->DIER |= TIM_DIER_UIE;  
     TIM3->CR1 |= TIM_CR1_CEN; 
 }

@@ -9,37 +9,26 @@
 	void SystemClock_Config(void) {
    
     RCC->CR |= RCC_CR_HSEON;
-
-   
     while (!(RCC->CR & RCC_CR_HSERDY));
 
-    
     FLASH->ACR |= FLASH_ACR_PRFTBE;
     FLASH->ACR &= ~FLASH_ACR_LATENCY;
     FLASH->ACR |= FLASH_ACR_LATENCY_2;  // 2 wait states for 72 MHz
-
-    
+ 
     RCC->CFGR |= RCC_CFGR_PLLSRC;       // HSE oscillator clock selected as PLL input clock
     RCC->CFGR |= RCC_CFGR_PLLMULL9;     // PLL input clock x 9
-
-   
-    RCC->CR |= RCC_CR_PLLON;
-
  
+    RCC->CR |= RCC_CR_PLLON;
+		
     while (!(RCC->CR & RCC_CR_PLLRDY));
 
- 
     RCC->CFGR |= RCC_CFGR_HPRE_DIV1;    // HCLK = SYSCLK
     RCC->CFGR |= RCC_CFGR_PPRE1_DIV2;   // PCLK1 = HCLK/2
     RCC->CFGR |= RCC_CFGR_PPRE2_DIV1;   // PCLK2 = HCLK
-
    
     RCC->CFGR &= ~RCC_CFGR_SW;
     RCC->CFGR |= RCC_CFGR_SW_PLL;
-
-   
     while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
-
     
     SystemCoreClockUpdate();
 }
@@ -47,7 +36,7 @@
 int main (void) {
 	SystemClock_Config();
 	timer_init();
-	
+
   i2c_init(I2C_1, I2C_FM);
 	i2c_init(I2C_2, I2C_FM);
 	lcd_i2c_init(I2C_1);
@@ -59,11 +48,7 @@ int main (void) {
 	led_init(5);
 	led_init(2);
 	intr_init();
-//	 	 lcd_i2c_msg(I2C_1, 1, 0, "Vietduc03 - B+");
-//	uart_init(UART3, BR_115200);	
-//char buffer[50];	
  while(1) {
-	 
      if (STATE == 1) {
 			 fallDetect(I2C_2, &mpu);
 		        if( LEDG == 1) {
@@ -81,9 +66,7 @@ int main (void) {
 							else {
 								led_off(2);
 							}
-						}
-						
-						
+						}	
 						else {
 							lcd_i2c_msg(I2C_1, 1,0,  "NORMAL!!");
 							led_off(2);
@@ -95,12 +78,6 @@ int main (void) {
 						led_off(2);
             led_off(5);
         } 
-	 
-/*	 	snprintf(buffer, sizeof(buffer), "%d, %d", STATE, FALL);
-	 lcd_i2c_msg(I2C_1, 1,0,  buffer);
-	 delay_ms(100);
-  	lcd_i2c_cmd(I2C_1, 0x01); 
-		delay_ms(100);   */
     }  
 }
 
@@ -149,7 +126,7 @@ void fallDetect(uint8_t i2c, MPU6050 *mpu) {
     acc[4] = mpu->Gy;
     acc[5] = mpu->Gz;
    
-    if(sqrt(pow(acc[0], 2)+ pow(acc[1], 2)+pow(acc[2], 2)) >= 0.55 && sqrt(pow(acc[3], 2)+ pow(acc[3], 2)+pow(acc[3], 2)) >= 300 ) {
+    if(sqrt(pow(acc[0], 2)+ pow(acc[1], 2)+pow(acc[2], 2)) >= 0.55 && sqrt(pow(acc[3], 2)+ pow(acc[3], 2)+pow(acc[3], 2)) >= 500 ) {
 		FALL = 1;
 		}
 		delay_ms(100);
