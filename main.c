@@ -6,32 +6,32 @@
 	volatile int LEDG = 0;
 	volatile int LEDR = 0;
 	
-	void SystemClock_Config(void) {
+void SystemClock_Config(void) {
    
-    RCC->CR |= RCC_CR_HSEON;
-    while (!(RCC->CR & RCC_CR_HSERDY));
+    RCC->CR |= (1 << 0); // Set HSEON bit
+    while (!(RCC->CR & (1 << 17))); // Wait until HSERDY bit is set
 
-    FLASH->ACR |= FLASH_ACR_PRFTBE;
-    FLASH->ACR &= ~FLASH_ACR_LATENCY;
-    FLASH->ACR |= FLASH_ACR_LATENCY_2;  // 2 wait states for 72 MHz
+    FLASH->ACR |= (1 << 4); // Enable Flash prefetch buffer
+    FLASH->ACR &= ~(unsigned int)(0x7 << 0); // Clear LATENCY bits
+    FLASH->ACR |= (2 << 0); // Set LATENCY bits for 72 MHz
  
-    RCC->CFGR |= RCC_CFGR_PLLSRC;       // HSE oscillator clock selected as PLL input clock
-    RCC->CFGR |= RCC_CFGR_PLLMULL9;     // PLL input clock x 9
+    RCC->CFGR |= (1 << 16); // HSE oscillator clock selected as PLL input clock
+    RCC->CFGR |= (9 << 18); // PLL input clock x 9
  
-    RCC->CR |= RCC_CR_PLLON;
-		
-    while (!(RCC->CR & RCC_CR_PLLRDY));
+    RCC->CR |= (1 << 24); // Set PLLON bit
+    while (!(RCC->CR & (1 << 25))); // Wait until PLLRDY bit is set
 
-    RCC->CFGR |= RCC_CFGR_HPRE_DIV1;    // HCLK = SYSCLK
-    RCC->CFGR |= RCC_CFGR_PPRE1_DIV2;   // PCLK1 = HCLK/2
-    RCC->CFGR |= RCC_CFGR_PPRE2_DIV1;   // PCLK2 = HCLK
+    RCC->CFGR |= (0 << 4); // HCLK = SYSCLK
+    RCC->CFGR |= (2 << 8); // PCLK1 = HCLK/2
+    RCC->CFGR |= (0 << 11); // PCLK2 = HCLK
    
-    RCC->CFGR &= ~RCC_CFGR_SW;
-    RCC->CFGR |= RCC_CFGR_SW_PLL;
-    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
-    
+    RCC->CFGR &= ~(unsigned int)(0x3 << 0); // Clear SW bits
+    RCC->CFGR |= (2 << 0); // Set SW bits to PLL
+    while ((RCC->CFGR & (0x3 << 2)) != (2 << 2)); // Wait until PLL is used as system clock
+
     SystemCoreClockUpdate();
 }
+
 	
 int main (void) {
 	SystemClock_Config();
@@ -126,7 +126,7 @@ void fallDetect(uint8_t i2c, MPU6050 *mpu) {
     acc[4] = mpu->Gy;
     acc[5] = mpu->Gz;
    
-    if(sqrt(pow(acc[0], 2)+ pow(acc[1], 2)+pow(acc[2], 2)) >= 0.55 && sqrt(pow(acc[3], 2)+ pow(acc[3], 2)+pow(acc[3], 2)) >= 500 ) {
+    if(sqrt(pow(acc[0], 2)+ pow(acc[1], 2)+pow(acc[2], 2)) >= 0.8 && sqrt(pow(acc[3], 2)+ pow(acc[3], 2)+pow(acc[3], 2)) >= 300 ) {
 		FALL = 1;
 		}
 		delay_ms(100);

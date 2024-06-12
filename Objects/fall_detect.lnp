@@ -6,7 +6,6 @@
 ".\objects\timer.o"
 ".\objects\i2c.o"
 ".\objects\lcd.o"
-".\objects\uart.o"
 ".\objects\interrupt.o"
 ".\objects\mpu6050.o"
 ".\objects\misc.o"
