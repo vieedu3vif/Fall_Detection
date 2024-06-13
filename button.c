@@ -3,7 +3,7 @@
 void button_init(unsigned short button)
 {
 	if( button == sw1 ) {
-		gpio_init(PortA, 0, IN_PUSHPULL, IN);
+		gpio_init(PortA, 1, IN_PUSHPULL, IN);
 		
 		}
 	else if (button == sw2) {

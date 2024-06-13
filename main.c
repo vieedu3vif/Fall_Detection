@@ -2,8 +2,8 @@
 #include "stm32f10x.h"
 
 #define FALL_THRESHOLD_LOW 0.55
-#define FALL_THRESHOLD_HIGH 1.4
-#define GYRO_THRESHOLD 350
+#define FALL_THRESHOLD_HIGH 1
+#define GYRO_THRESHOLD 280
 
 	volatile int STATE = 0;
 	volatile int FALL = 0;
@@ -11,28 +11,40 @@
 	volatile int LEDR = 0;
 	volatile bool in_free_fall = 0;
 	
-void SystemClock_Config(void) {
-   
-    RCC->CR |= (1 << 0); // Set HSEON bit
-    while (!(RCC->CR & (1 << 17))); // Wait until HSERDY bit is set
+	void SystemClock_Config(void) {
 
-    FLASH->ACR |= (1 << 4); // Enable Flash prefetch buffer
-    FLASH->ACR &= ~(unsigned int)(0x7 << 0); // Clear LATENCY bits
-    FLASH->ACR |= (2 << 0); // Set LATENCY bits for 72 MHz
- 
-    RCC->CFGR |= (1 << 16); // HSE oscillator clock selected as PLL input clock
-    RCC->CFGR |= (9 << 18); // PLL input clock x 9
- 
-    RCC->CR |= (1 << 24); // Set PLLON bit
-    while (!(RCC->CR & (1 << 25))); // Wait until PLLRDY bit is set
+    RCC->CR |= RCC_CR_HSEON;
 
-    RCC->CFGR |= (0 << 4); // HCLK = SYSCLK
-    RCC->CFGR |= (2 << 8); // PCLK1 = HCLK/2
-    RCC->CFGR |= (0 << 11); // PCLK2 = HCLK
-   
-    RCC->CFGR &= ~(unsigned int)(0x3 << 0); // Clear SW bits
-    RCC->CFGR |= (2 << 0); // Set SW bits to PLL
-    while ((RCC->CFGR & (0x3 << 2)) != (2 << 2)); // Wait until PLL is used as system clock
+
+    while (!(RCC->CR & RCC_CR_HSERDY));
+
+
+    FLASH->ACR |= FLASH_ACR_PRFTBE;
+    FLASH->ACR &= ~FLASH_ACR_LATENCY;
+    FLASH->ACR |= FLASH_ACR_LATENCY_2;  // 2 wait states for 72 MHz
+
+
+    RCC->CFGR |= RCC_CFGR_PLLSRC;       // HSE oscillator clock selected as PLL input clock
+    RCC->CFGR |= RCC_CFGR_PLLMULL9;     // PLL input clock x 9
+
+
+    RCC->CR |= RCC_CR_PLLON;
+
+
+    while (!(RCC->CR & RCC_CR_PLLRDY));
+
+
+    RCC->CFGR |= RCC_CFGR_HPRE_DIV1;    // HCLK = SYSCLK
+    RCC->CFGR |= RCC_CFGR_PPRE1_DIV2;   // PCLK1 = HCLK/2
+    RCC->CFGR |= RCC_CFGR_PPRE2_DIV1;   // PCLK2 = HCLK
+
+
+    RCC->CFGR &= ~RCC_CFGR_SW;
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+
+
+    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+
 
     SystemCoreClockUpdate();
 }
@@ -79,17 +91,17 @@ int main (void) {
         } else {
 					  FALL = 0;
 					  lcd_i2c_cmd(I2C_1, 0x01); 
-					  delay_ms(100);
+					  delay_ms(50);
 						led_off(2);
             led_off(5);
         } 
     }  
 }
 
-void EXTI0_IRQHandler(void) {
+void EXTI1_IRQHandler(void) {
  
-    if (EXTI->PR & (1 << 0 )) {
-        EXTI->PR |= (1 << 0 );
+    if (EXTI->PR & (1 << 1 )) {
+        EXTI->PR |= (1 << 1 );
             STATE = !STATE;
    } 
 } 

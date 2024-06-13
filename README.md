@@ -21,4 +21,4 @@
 - The device can be worn on the body and detects unusual movements and falls of the wearer, it will display a warning on the LCD screen.
 
 ## Demo
-- [Video demo on youtube]()
+- [Video demo on youtube](https://www.youtube.com/watch?v=14fzugDGAuc)

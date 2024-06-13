@@ -8,13 +8,13 @@ void intr_init(){
 	__disable_irq();
 	
 	
-	  AFIO->EXTICR[0]  &= ~(0xFU << 0);
-    AFIO->EXTICR[0] |= (0x0 << 0);   
+	  AFIO->EXTICR[0]  &= ~(0xFU << 4);
+    AFIO->EXTICR[0] |= (0x0 << 4);   
 	
-  	EXTI->IMR &= ~(unsigned int)(1 << 0);
-  	EXTI->IMR |= (1 << 0 );
-	  EXTI->FTSR |= (1 << 0 );
-	  EXTI->RTSR &= ~(unsigned int)(1 << 0 );
+  	EXTI->IMR &= ~(unsigned int)(1 << 1);
+  	EXTI->IMR |= (1 << 1 );
+	  EXTI->FTSR |= (1 << 1 );
+	  EXTI->RTSR &= ~(unsigned int)(1 << 1 );
 
     
 		AFIO->EXTICR[0] &= ~(0xFU << 12); 
@@ -25,8 +25,8 @@ void intr_init(){
     EXTI->FTSR |= (1 << 3); 
     EXTI->RTSR &= ~(unsigned int)(1 << 3); 
 		
-		NVIC_SetPriority(EXTI0_IRQn, 0);
-	  NVIC_EnableIRQ(EXTI0_IRQn);
+		NVIC_SetPriority(EXTI1_IRQn, 0);
+	  NVIC_EnableIRQ(EXTI1_IRQn);
 		
     NVIC_SetPriority(EXTI3_IRQn, 1); 
     NVIC_EnableIRQ(EXTI3_IRQn); 
