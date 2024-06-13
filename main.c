@@ -1,10 +1,15 @@
 #include "main.h"
 #include "stm32f10x.h"
 
+#define FALL_THRESHOLD_LOW 0.55
+#define FALL_THRESHOLD_HIGH 1.4
+#define GYRO_THRESHOLD 350
+
 	volatile int STATE = 0;
 	volatile int FALL = 0;
 	volatile int LEDG = 0;
 	volatile int LEDR = 0;
+	volatile bool in_free_fall = 0;
 	
 void SystemClock_Config(void) {
    
@@ -113,21 +118,35 @@ void EXTI3_IRQHandler(void) {
 }
 
 void fallDetect(uint8_t i2c, MPU6050 *mpu) {
-    double acc[6]; 
+    double acc[3]; 
+    double gyro[3];
 
     MPU6050_Read_Accel(i2c, mpu);
-	  MPU6050_Read_Gyro(i2c, mpu);
-	
+    MPU6050_Read_Gyro(i2c, mpu);
+    
     acc[0] = mpu->Ax;
     acc[1] = mpu->Ay;
     acc[2] = mpu->Az;
     
-    acc[3] = mpu->Gx;
-    acc[4] = mpu->Gy;
-    acc[5] = mpu->Gz;
+    gyro[0] = mpu->Gx;
+    gyro[1] = mpu->Gy;
+    gyro[2] = mpu->Gz;
    
-    if(sqrt(pow(acc[0], 2)+ pow(acc[1], 2)+pow(acc[2], 2)) >= 0.8 && sqrt(pow(acc[3], 2)+ pow(acc[3], 2)+pow(acc[3], 2)) >= 300 ) {
-		FALL = 1;
-		}
-		delay_ms(100);
-} 
+    double accChange = sqrt(pow(acc[0], 2) + pow(acc[1], 2) + pow(acc[2], 2));
+	double gyroChange = sqrt(pow(gyro[0], 2) + pow(gyro[1], 2) + pow(gyro[2], 2));
+    
+    if (accChange < FALL_THRESHOLD_LOW) {
+        in_free_fall = true;
+    } 
+    else if (in_free_fall && accChange > FALL_THRESHOLD_HIGH) {
+        in_free_fall = false; 
+        if (gyroChange > GYRO_THRESHOLD) {
+            FALL = 1; 
+        }
+    } 
+    else if (accChange > FALL_THRESHOLD_LOW) {
+        in_free_fall = false; 
+    }
+    
+    delay_ms(100);
+}
