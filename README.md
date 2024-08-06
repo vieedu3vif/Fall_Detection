@@ -7,7 +7,6 @@
 
 ## Authors
 - [Nguyen Viet Duc- 21020904, UET - VNU](https://github.com/vieedu3vif)
-- Pham Van Duc - 21020139, UET - VNU
 
 ## Hardware description and Features
  ### Hardware description
